@@ -25,10 +25,14 @@ namespace MyAppCore1
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ISaludo, Saludo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory,
+            ISaludo saludo)
         {
             loggerFactory.AddConsole();
 
@@ -39,7 +43,7 @@ namespace MyAppCore1
 
             app.Run(async (context) =>
             {
-                var message = Configuration["Saludo"];
+                var message = saludo.GetSaludo();
                 await context.Response.WriteAsync(message);
             });
         }
