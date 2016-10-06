@@ -42,7 +42,7 @@ namespace MyAppCore1
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseWelcomePage();
+            app.UseWelcomePage("/bienvenida");
 
             app.Run(async (context) =>
             {
