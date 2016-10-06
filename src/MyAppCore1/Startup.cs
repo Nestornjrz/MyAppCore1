@@ -37,9 +37,12 @@ namespace MyAppCore1
         {
             loggerFactory.AddConsole();
 
-            if (env.IsDevelopment())
-            {
+            if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
+            } else {
+                app.UseExceptionHandler(new ExceptionHandlerOptions {
+                    ExceptionHandler = context => context.Response.WriteAsync("Amontema...")
+                });
             }
 
             app.UseWelcomePage(new WelcomePageOptions {
@@ -48,6 +51,7 @@ namespace MyAppCore1
 
             app.Run(async (context) =>
             {
+                throw new Exception("Algo se rompio!");
                 var message = saludo.GetSaludo();
                 await context.Response.WriteAsync(message);
             });
