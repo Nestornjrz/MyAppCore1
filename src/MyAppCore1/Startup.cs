@@ -42,6 +42,8 @@ namespace MyAppCore1
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWelcomePage();
+
             app.Run(async (context) =>
             {
                 var message = saludo.GetSaludo();
