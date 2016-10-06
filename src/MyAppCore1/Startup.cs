@@ -45,13 +45,14 @@ namespace MyAppCore1
                 });
             }
 
+            app.UseFileServer();
+
             app.UseWelcomePage(new WelcomePageOptions {
                 Path = "/bienvenida"
             });
 
             app.Run(async (context) =>
-            {
-                throw new Exception("Algo se rompio!");
+            {              
                 var message = saludo.GetSaludo();
                 await context.Response.WriteAsync(message);
             });
