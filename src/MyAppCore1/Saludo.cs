@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,8 +10,13 @@ namespace MyAppCore1
         string GetSaludo();
     }
     public class Saludo : ISaludo {
+        private string _saludo;
+
+        public Saludo(IConfiguration configuration) {
+            _saludo = configuration["Saludo"];
+        }
         public string GetSaludo() {
-            return "Hola desde Saludo";
+            return _saludo;
         }
     }
 }
