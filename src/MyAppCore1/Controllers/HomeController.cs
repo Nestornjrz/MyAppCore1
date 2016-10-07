@@ -6,7 +6,8 @@ namespace MyAppCore1.Controllers {
     {
         public IActionResult Index() {
             var model = new Restaurante { Id = 1, Nombre = "La casa de las empanadas" };
-            return new ObjectResult(model);
+
+            return View();
         }
     }
 }
