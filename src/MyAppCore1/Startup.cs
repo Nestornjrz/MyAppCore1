@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Routing;
 
 namespace MyAppCore1
 {
@@ -48,8 +49,15 @@ namespace MyAppCore1
 
             app.UseFileServer();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(ConfiguracionRutas);
+
+            app.Run(ctx => ctx.Response.WriteAsync("No encontrado"));
           
+        }
+
+        private void ConfiguracionRutas(IRouteBuilder rutaBuilder) {
+            rutaBuilder.MapRoute("Default",
+                "{controller=Home}/{action=Index}/{id?}");
         }
     }
 }
