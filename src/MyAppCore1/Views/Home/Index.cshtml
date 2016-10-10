@@ -1,10 +1,18 @@
-﻿@model MyAppCore1.Models.Restaurante
+﻿@model  IEnumerable<MyAppCore1.Models.Restaurante>
 
-<html xmlns="http://www.w3.org/1999/xhtml">  
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Restaurante</title>
 </head>
 <body>
-    <h1>@Model.Nombre</h1>   
+    <h1>Bienvenido!</h1>
+    <table>
+        @foreach (var restaurante in Model) {
+            <tr>
+                <td>@restaurante.Id</td>
+                <td>@restaurante.Nombre</td>
+            </tr>
+        }
+    </table>
 </body>
 </html>
