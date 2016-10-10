@@ -7,7 +7,7 @@ namespace MyAppCore1.Controllers {
         public IActionResult Index() {
             var model = new Restaurante { Id = 1, Nombre = "La casa de las empanadas" };
 
-            return View();
+            return View(model);
         }
     }
 }
