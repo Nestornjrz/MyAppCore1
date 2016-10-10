@@ -19,8 +19,9 @@ namespace MyAppCore1.Controllers {
 
             return View(model);
         }
-        public string Details(int id) {
-            return id.ToString();
+        public IActionResult Details(int id) {
+            var model = _restauranteData.Get(id);
+            return View(model);
         }
     }
 }
