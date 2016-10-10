@@ -1,8 +1,5 @@
-﻿using MyAppCore1.Models;
-using System;
+﻿using MyAppCore1.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyAppCore1.Services {
     public interface IRestauranteData {

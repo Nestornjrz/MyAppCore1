@@ -1,5 +1,5 @@
 ﻿
-namespace MyAppCore1.Models
+namespace MyAppCore1.Entities
 {
     public class Restaurante
     {
