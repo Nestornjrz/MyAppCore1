@@ -21,6 +21,9 @@ namespace MyAppCore1.Controllers {
         }
         public IActionResult Details(int id) {
             var model = _restauranteData.Get(id);
+            if (model == null) {
+                return RedirectToAction(nameof(Index));
+            }
             return View(model);
         }
     }
