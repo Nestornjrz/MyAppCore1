@@ -10,7 +10,9 @@
     <table>
         @foreach (var restaurante in Model.Restaurantes) {
             <tr>
-                <td>@restaurante.Id</td>
+                <td>
+                    <a href="/home/details/@restaurante.Id">Detalle</a>                   
+                </td>
                 <td>@restaurante.Nombre</td>
             </tr>
         }
