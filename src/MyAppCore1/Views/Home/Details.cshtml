@@ -1,7 +1,8 @@
-﻿@model MyAppCore1.Entities.Restaurante
+﻿@using MyAppCore1.Controllers
+@model MyAppCore1.Entities.Restaurante
 
 <h1>@Model.Nombre</h1>
 <div>... detalles ...</div>
 <div>
-    @Html.ActionLink("Home","Index")
+    @Html.ActionLink("Home",nameof(HomeController.Index))
 </div>
