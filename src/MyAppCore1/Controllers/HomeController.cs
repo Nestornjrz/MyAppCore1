@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyAppCore1.Entities;
 using MyAppCore1.Services;
 using MyAppCore1.ViewModels;
+
 
 namespace MyAppCore1.Controllers {
     public class HomeController:Controller
@@ -26,9 +28,19 @@ namespace MyAppCore1.Controllers {
             }
             return View(model);
         }
-
+        [HttpGet]
         public IActionResult Create() {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Create(RestauranteEditViewModel model) {
+            var nuevoRestaurante = new Restaurante();
+            nuevoRestaurante.Cosina = model.Cosina;
+            nuevoRestaurante.Nombre = model.Nombre;
+
+            nuevoRestaurante = _restauranteData.Add(nuevoRestaurante);
+
+            return View("Details", nuevoRestaurante);
         }
     }
 }

@@ -2,7 +2,12 @@
 @model MyAppCore1.Entities.Restaurante
 
 <h1>@Model.Nombre</h1>
-<div>... detalles ...</div>
+<div>
+    Id:@Model.Id
+</div>
+<div>
+    Cosina: @Model.Cosina
+</div>
 <div>
     @Html.ActionLink("Home",nameof(HomeController.Index))
 </div>

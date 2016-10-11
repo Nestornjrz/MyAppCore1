@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
+
 namespace MyAppCore1.Services {
     public interface IRestauranteData {
         IEnumerable<Restaurante> GetAll();
         Restaurante Get(int id);
+        Restaurante Add(Restaurante nuevoRestaurante);
     }
     public class InMemoryRestauranteData : IRestauranteData {
-        public InMemoryRestauranteData() {
+        static InMemoryRestauranteData() {
             _restaurantes = new List<Restaurante> {
                 new Restaurante {Id=1,Nombre="La casa de las empanadas" },
                 new Restaurante {Id=2,Nombre="Comida china" },
@@ -19,11 +21,17 @@ namespace MyAppCore1.Services {
         public IEnumerable<Restaurante> GetAll() {
             return _restaurantes;
         }
-
+       
         public Restaurante Get(int id) {
             return _restaurantes.FirstOrDefault(r=>r.Id == id);
         }
+     
+        public Restaurante Add(Restaurante nuevoRestaurante) {
+            nuevoRestaurante.Id = _restaurantes.Max(r=>r.Id) + 1;
+            _restaurantes.Add(nuevoRestaurante);
+            return nuevoRestaurante;
+        }
 
-        List<Restaurante> _restaurantes;
+        static List<Restaurante> _restaurantes;
     }
 }
