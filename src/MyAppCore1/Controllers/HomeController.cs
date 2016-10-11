@@ -33,13 +33,16 @@ namespace MyAppCore1.Controllers {
         }
         [HttpPost]
         public IActionResult Create(RestauranteEditViewModel model) {
-            var nuevoRestaurante = new Restaurante();
-            nuevoRestaurante.Cosina = model.Cosina;
-            nuevoRestaurante.Nombre = model.Nombre;
+            if (ModelState.IsValid) {
+                var nuevoRestaurante = new Restaurante();
+                nuevoRestaurante.Cosina = model.Cosina;
+                nuevoRestaurante.Nombre = model.Nombre;
 
-            nuevoRestaurante = _restauranteData.Add(nuevoRestaurante);
+                nuevoRestaurante = _restauranteData.Add(nuevoRestaurante);
 
-            return RedirectToAction("Details", new { id = nuevoRestaurante.Id });
+                return RedirectToAction("Details", new { id = nuevoRestaurante.Id });
+            }
+            return View();
         }
     }
 }
