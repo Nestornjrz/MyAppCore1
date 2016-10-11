@@ -5,8 +5,7 @@ using MyAppCore1.ViewModels;
 
 
 namespace MyAppCore1.Controllers {
-    public class HomeController:Controller
-    {
+    public class HomeController : Controller {
         private IRestauranteData _restauranteData;
         private ISaludo _saludo;
 
@@ -40,7 +39,7 @@ namespace MyAppCore1.Controllers {
 
             nuevoRestaurante = _restauranteData.Add(nuevoRestaurante);
 
-            return View("Details", nuevoRestaurante);
+            return RedirectToAction("Details", new { id = nuevoRestaurante.Id });
         }
     }
 }
