@@ -1,0 +1,20 @@
+﻿@using MyAppCore1.Entities
+@model MyAppCore1.Entities.Restaurante
+<div>
+    <h1>Crear</h1>
+    <div>
+        @using (Html.BeginForm()) {
+            <div>
+                @Html.LabelFor(m=>m.Nombre)
+                @Html.TextBoxFor(m=>m.Nombre)
+            </div>
+            <div>
+                @Html.LabelFor(m=>m.Cosina)
+                @Html.DropDownListFor(m=>m.Cosina,Html.GetEnumSelectList(typeof(TipoCosina)))
+            </div>
+            <div>
+                <input type="submit" value="Grabar"/>
+            </div>
+        }
+    </div>
+</div>
