@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Routing;
 using MyAppCore1.Services;
+using MyAppCore1.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyAppCore1 {
     public class Startup {
@@ -23,7 +25,9 @@ namespace MyAppCore1 {
             services.AddMvc();
             services.AddSingleton(Configuration);//Se agrega para que la clase "Saludo" puede insertarlo en su constructor al instanciar
             services.AddSingleton<ISaludo, Saludo>();
-            services.AddScoped<IRestauranteData, InMemoryRestauranteData>();
+            services.AddScoped<IRestauranteData, SqlRestauranteData>();
+            services.AddDbContext<MyAppCore1DbContext>(opciones => 
+            opciones.UseSqlServer(Configuration.GetConnectionString("MyAppCore1")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
