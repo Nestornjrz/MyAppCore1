@@ -10,6 +10,28 @@ namespace MyAppCore1.Services {
         Restaurante Get(int id);
         Restaurante Add(Restaurante nuevoRestaurante);
     }
+
+    public class SqlRestauranteData : IRestauranteData {
+        private MyAppCore1DbContext _context;
+
+        public SqlRestauranteData(MyAppCore1DbContext context) {
+            _context = context;
+        }
+
+        public Restaurante Add(Restaurante nuevoRestaurante) {
+            _context.Add(nuevoRestaurante);
+            _context.SaveChanges();
+            return nuevoRestaurante;
+        }
+
+        public Restaurante Get(int id) {
+            return _context.Restaurantes.FirstOrDefault(r=>r.Id == id);
+        }
+
+        public IEnumerable<Restaurante> GetAll() {
+            return _context.Restaurantes;
+        }
+    }
     public class InMemoryRestauranteData : IRestauranteData {
         static InMemoryRestauranteData() {
             _restaurantes = new List<Restaurante> {
