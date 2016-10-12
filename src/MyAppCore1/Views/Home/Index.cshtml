@@ -1,23 +1,22 @@
 ﻿@model  MyAppCore1.ViewModels.HomePageViewModel
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Bienvenido!</h1>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Restaurante</title>
-</head>
-<body>
-    <h1>Bienvenido!</h1>
+<table>
+    @foreach (var restaurante in Model.Restaurantes) {
+        <tr>
+            <td>
+                <a href="/home/details/@restaurante.Id">Detalle</a>
+
+                @Html.ActionLink("View", "Details", new { id = restaurante.Id })
+            </td>
+            <td>@restaurante.Nombre</td>
+        </tr>
+    }
+</table>
+@section footer{
     <h3>@Model.MensajeActual</h3>
-    <table>
-        @foreach (var restaurante in Model.Restaurantes) {
-            <tr>
-                <td>
-                    <a href="/home/details/@restaurante.Id">Detalle</a>
-
-                    @Html.ActionLink("View","Details", new  { id= restaurante.Id })
-                </td>
-                <td>@restaurante.Nombre</td>
-            </tr>
-        }
-    </table>
-</body>
-</html>
+}
