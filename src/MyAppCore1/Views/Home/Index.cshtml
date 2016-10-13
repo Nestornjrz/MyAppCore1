@@ -9,9 +9,7 @@
     @foreach (var restaurante in Model.Restaurantes) {
         <tr>
             <td>
-                <a href="/home/details/@restaurante.Id">Detalle</a>
-
-                @Html.ActionLink("View", "Details", new { id = restaurante.Id })
+                <a asp-action="Details" asp-route-id="@restaurante.Id">Detalles</a>
             </td>
             <td>@restaurante.Nombre</td>
         </tr>
