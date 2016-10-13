@@ -1,23 +1,17 @@
 ﻿@model  MyAppCore1.ViewModels.HomePageViewModel
 @{
     ViewBag.Title = "Home";
-    
+
 }
 <h1>Bienvenido!</h1>
 
-<table>
-    @foreach (var restaurante in Model.Restaurantes) {
-        <tr>
-            <td>@restaurante.Nombre</td>
-            <td>
-                <a asp-action="Details" asp-route-id="@restaurante.Id">Detalles</a>
-                <a asp-action="Edit" asp-route-id="@restaurante.Id">Editar</a>
-            </td>
-        </tr>
-    }
-</table>
+@foreach (var restaurante in Model.Restaurantes) {
+    @Html.Partial("_Resumen", restaurante);
+}
 
-<a asp-controller="Home" asp-action="Create">Crear</a>
+<div>
+    <a asp-controller="Home" asp-action="Create">Crear</a>
+</div>
 
 @section footer{
     <h3>@Model.MensajeActual</h3>
