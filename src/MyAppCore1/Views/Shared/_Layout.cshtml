@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using MyAppCore1.Services
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -10,7 +11,8 @@
         @RenderBody()
     </div>
     <footer>
-        @RenderSection("footer", required: false)        
+        @RenderSection("footer", required: false)
+        @await Component.InvokeAsync(nameof(Saludo))
     </footer>
 </body>
 </html>
