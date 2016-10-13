@@ -13,9 +13,9 @@ namespace MyAppCore1.ViewComponents
         public SaludoViewComponent(ISaludo saludo) {
             _saludo = saludo;
         }
-        public IViewComponentResult Invoke() {
+        public Task<IViewComponentResult> InvokeAsync() {
             var model = _saludo.GetSaludo();
-            return View("Default",model);
+            return Task.FromResult<IViewComponentResult>(View("Default",model));
         }
     }
 }
