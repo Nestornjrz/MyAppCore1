@@ -27,11 +27,36 @@ namespace MyAppCore1.Controllers {
             }
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id) {
+            var model = _restauranteData.Get(id);
+            if (model == null) {
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, RestauranteEditViewModel model) {
+            var restaurante = _restauranteData.Get(id);
+            if (ModelState.IsValid) {
+                restaurante.Cosina = model.Cosina;
+                restaurante.Nombre = model.Nombre;
+                _restauranteData.Commit();
+                return RedirectToAction("Details", id= restaurante.Id);
+            }
+            return View(model);
+        }
+
+
         [HttpGet]
         public IActionResult Create() {
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(RestauranteEditViewModel model) {
             if (ModelState.IsValid) {
                 var nuevoRestaurante = new Restaurante();
@@ -39,6 +64,7 @@ namespace MyAppCore1.Controllers {
                 nuevoRestaurante.Nombre = model.Nombre;
 
                 nuevoRestaurante = _restauranteData.Add(nuevoRestaurante);
+                _restauranteData.Commit();
 
                 return RedirectToAction("Details", new { id = nuevoRestaurante.Id });
             }

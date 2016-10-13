@@ -8,10 +8,11 @@
 <table>
     @foreach (var restaurante in Model.Restaurantes) {
         <tr>
+            <td>@restaurante.Nombre</td>
             <td>
                 <a asp-action="Details" asp-route-id="@restaurante.Id">Detalles</a>
+                <a asp-action="Edit" asp-route-id="@restaurante.Id">Editar</a>
             </td>
-            <td>@restaurante.Nombre</td>
         </tr>
     }
 </table>

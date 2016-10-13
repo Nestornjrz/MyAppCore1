@@ -9,6 +9,7 @@ namespace MyAppCore1.Services {
         IEnumerable<Restaurante> GetAll();
         Restaurante Get(int id);
         Restaurante Add(Restaurante nuevoRestaurante);
+        void Commit();
     }
 
     public class SqlRestauranteData : IRestauranteData {
@@ -19,9 +20,12 @@ namespace MyAppCore1.Services {
         }
 
         public Restaurante Add(Restaurante nuevoRestaurante) {
-            _context.Add(nuevoRestaurante);
-            _context.SaveChanges();
+            _context.Add(nuevoRestaurante);            
             return nuevoRestaurante;
+        }
+
+        public void Commit() {
+            _context.SaveChanges();
         }
 
         public Restaurante Get(int id) {
@@ -52,6 +56,10 @@ namespace MyAppCore1.Services {
             nuevoRestaurante.Id = _restaurantes.Max(r=>r.Id) + 1;
             _restaurantes.Add(nuevoRestaurante);
             return nuevoRestaurante;
+        }
+
+        public void Commit() {
+            //No aplicable
         }
 
         static List<Restaurante> _restaurantes;
