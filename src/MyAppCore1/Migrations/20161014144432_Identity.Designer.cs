@@ -8,9 +8,10 @@ using MyAppCore1.Entities;
 namespace MyAppCore1.Migrations
 {
     [DbContext(typeof(MyAppCore1DbContext))]
-    partial class MyAppCore1DbContextModelSnapshot : ModelSnapshot
+    [Migration("20161014144432_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
