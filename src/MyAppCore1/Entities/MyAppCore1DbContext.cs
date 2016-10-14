@@ -1,12 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-namespace MyAppCore1.Entities
-{
-    public class MyAppCore1DbContext:DbContext
+namespace MyAppCore1.Entities {
+    public class MyAppCore1DbContext:IdentityDbContext<User>
     {
         public MyAppCore1DbContext(DbContextOptions opciones):base(opciones) {
 

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Routing;
 using MyAppCore1.Services;
 using MyAppCore1.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MyAppCore1 {
     public class Startup {
@@ -27,7 +28,9 @@ namespace MyAppCore1 {
             services.AddSingleton<ISaludo, Saludo>();
             services.AddScoped<IRestauranteData, SqlRestauranteData>();
             services.AddDbContext<MyAppCore1DbContext>(opciones => 
-            opciones.UseSqlServer(Configuration.GetConnectionString("MyAppCore1")));
+                    opciones.UseSqlServer(Configuration.GetConnectionString("MyAppCore1")));
+            services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<MyAppCore1DbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +49,8 @@ namespace MyAppCore1 {
             }
 
             app.UseFileServer();
+
+            app.UseIdentity();
 
             app.UseMvc(ConfiguracionRutas);
 
