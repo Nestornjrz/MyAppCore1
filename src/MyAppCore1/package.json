@@ -1,7 +1,10 @@
-﻿{
+{
 	"version": "1.0.0",
-	"name": "asp.net",
+	"name": "myappcore1",
 	"private": true,
-	"devDependencies": {
-	}
+  "devDependencies": {
+  },
+  "dependencies": {
+    "bootstrap": "3.3.7"
+  }
 }
