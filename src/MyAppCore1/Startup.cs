@@ -50,6 +50,8 @@ namespace MyAppCore1 {
 
             app.UseFileServer();
 
+            app.UseNodeModules(env.ContentRootPath);
+
             app.UseIdentity();
 
             app.UseMvc(ConfiguracionRutas);
