@@ -5,5 +5,6 @@
     <input type="submit" value="Logout" />
 </form>
 } else {
-    <span>Anonimo</span>
+    <a asp-controller="Account" asp-action="Register">Registrar</a>
+    <a asp-controller="Account" asp-action="Login">Loguearse</a>
 }
