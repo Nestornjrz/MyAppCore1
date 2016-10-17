@@ -37,5 +37,10 @@ namespace MyAppCore1.Controllers
             }
             return View();
         }
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout() {
+            await _gerenciaDeLogeo.SignOutAsync();
+            return RedirectToAction("Index","Home");
+        }
     }
 }
